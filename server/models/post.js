@@ -12,11 +12,6 @@ const postSchema = new mongoose.Schema({
         required: true,
         trim:true
     },
-    comments: {
-        type: [ObjectId],
-        default: [],
-        ref:'Comment'
-    },
     tags: {
         type: ObjectId,
         ref: 'Tag',
@@ -33,6 +28,10 @@ const postSchema = new mongoose.Schema({
     image: {
         data: Buffer,
         contentType:String
+    },
+    user_id: { 
+        type: ObjectId,
+        ref:'User'
     }
 },{timestamps:true})
 

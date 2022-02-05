@@ -1,14 +1,30 @@
 const express = require("express")
 const router = express.Router()
-const { getPost, addPost, getAllPosts }  = require("../controllers/post")
+const postController  = require("../controllers/post")
 
 
 router.route("/post")
-    .post(addPost)
-    .get(getAllPosts)
-router.route("/post/:id")
-    .get(getPost)
+    .post(postController.addPost)
+    .get(postController.fetchPosts)
 
+
+router.route("/post/:id")
+    .get(postController.getPost)
+    .patch(postController.editPost)
+
+
+router.route("/post/:id/comments")
+    .patch(postController.addComment)
+    .get(postController.getComments)
+
+
+router.route("/post/comment/:id")
+    .post(postController.addReply)
+    .get(postController.getReplies)
+
+
+router.route("/feed")
+    .get(postController.getFeed)
 
 
 

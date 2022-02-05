@@ -6,17 +6,22 @@ const {ObjectId} = mongoose.Schema
 
 
 const userSchema = new mongoose.Schema({
-    username: {
+    _id: String,
+    // username: {
+    //     type: String,
+    //     required: true,
+    //     trim: true,
+    //     minLength: 6,
+    //     unique: true
+    // },
+    fname: {
         type: String,
         required: true,
         trim: true,
-        minLength: 6,
-        unique: true
     },
-    name: {
+    lname: {
         type: String,
-        required: true,
-        trim: true,
+        trim:true
     },
     email: {
         type: String,
@@ -25,19 +30,17 @@ const userSchema = new mongoose.Schema({
         unique: true,
         validate:[validator.isEmail,"Email provided is invalid"]
     },
-    password: {
-        type: String,
-        required: [true, "A user must have a password"],
-        select: false,
-        minLength: 8
-    },
-    posts: {
-        type: [ObjectId],
-        default: [],
-        ref:'Post'
+    // password: {
+    //     type: String,
+    //     required: [true, "A user must have a password"],
+    //     select: false,
+    //     minLength: 8
+    // },
+    photo: {
+      type:String  
     },
     follower: {
-        type: [this],
+        type: [ObjectId],
         default:[]
     }
 })
