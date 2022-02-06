@@ -38,10 +38,11 @@ app.use(cors())
 const userRouter = require("./routes/user")
 const postRouter = require("./routes/post")
 const tagRouter = require("./routes/tag")
+const authRouter = require("./routes/auth")
 
 
-
-app.use("/", userRouter)
+app.use("/",authRouter)
+app.use("/api", userRouter)
 app.use("/api",postRouter)
 app.use("/api",tagRouter)
 

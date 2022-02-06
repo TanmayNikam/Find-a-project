@@ -45,7 +45,6 @@ exports.fetchPosts = async (req, res) => {
 
 exports.addPost = async (req, res) => {
     try {
-        
         const tags = await Tag.find({})
         let form = new formidable.IncomingForm()
         form.keepExtensions = true;
@@ -68,8 +67,8 @@ exports.addPost = async (req, res) => {
             
             // console.log(fields.tags)
             fields.tags = tags.find((ele) => (ele.name == fields.tags.toLowerCase()))._id
-            // let post = new Post({...fields,user_id:req.params.uid})
-            let post = new Post(fields)
+            let post = new Post({ ...fields, _id:req.user})
+            // let post = new Post(fields)
 
             if (files.image) {
                 post.image.data = fs.readFileSync(files.image.filepath)
